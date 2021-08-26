@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 
+#todo continue tutorial here: https://www.pythontutorial.net/tkinter/tkinter-event-binding/
+#todo research connection python browser
+
 root = tk.Tk()
 root.title("Postcoordination SNOMED Tool")
 root.geometry('600x400+50+50')

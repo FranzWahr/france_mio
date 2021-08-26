@@ -14,6 +14,7 @@ def snomed_mixed_to_numeric (snomed_mixed_string):
     snomed_numeric_string = re.sub(r"[a-zA-Z]" , '', snomed_mixed_string)
     snomed_numeric_string = re.sub(' ', '', snomed_numeric_string)
     snomed_numeric_string = re.sub('\|', '', snomed_numeric_string)
+    snomed_numeric_string = re.sub('/', '', snomed_numeric_string)
     snomed_numeric_string = re.sub('-', '', snomed_numeric_string)
 
     #for "(" and ")" handle case where used for nested grouping in post-coordination
@@ -53,8 +54,8 @@ def excel_input_output (one_column_xls):
     print("saved to folder")
 
 if __name__ == "__main__":
-    #excel_input_output(r"C:\Users\france\Desktop\mio42\worksheet\input-regex.xlsx")
-    snomed_mixed_string = ("408699006 |Device observable (observable entity)| : 704325000 |Relative to (attribute)| = 63653004 |Biomedical device (physical object)|")
+    excel_input_output(r"C:\Users\france\Desktop\mio42\worksheet\input-regex.xlsx")
+    snomed_mixed_string = ("363787002 |Observable entity (observable entity)|: 704321009 |Characterizes (attribute)| = 223458004 | Informing (procedure) |, 370131001 |Recipient category (attribute)|= 35359004 |Family (social concept)|")
     term = snomed_mixed_to_term(snomed_mixed_string)
     numeric = snomed_mixed_to_numeric(snomed_mixed_string)
     print(term)
