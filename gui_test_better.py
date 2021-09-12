@@ -1,7 +1,5 @@
-# Program to make a simple
-# login screen
+# Program to open a web page
 import urllib.request
-
 import tkinter as tk
 from tkinter import ttk
 from selenium import webdriver
@@ -13,61 +11,61 @@ root = tk.Tk()
 root.geometry("600x400")
 
 # declaring string variable
-# for storing name and password
+# for storing name
 name_var = tk.StringVar()
-passw_var = tk.StringVar()
+
+#weitere globale variable zum speichern
+webpage = "https://www.python.org/"
+#alt_wp = "https://www.wikipedia.org/"
+
+def open_page():
+    page_getter = name_var.get()
+    #if len(page_getter)==0:
+    #   raise Exception("No input. Type in a website... will be directed to " + webpage)
+    if len(page_getter) > 0:
+        wp = name_var.get()
+        new_label = tk.Label(root, text= "The website has been updated to : " + wp)
+        new_label.grid(row=5,column=0)
+    else :
+        print("Empty input default website is : " + webpage)
+        wp = webpage
 
 
-# defining a function that will
-# get the name and password and
-# print them on the screen
-def submit():
-    name = name_var.get()
-    password = passw_var.get()
-
-    print("The name is : " + name)
-    print("The password is : " + password)
-
+    print("The website is : " + wp)
     name_var.set("")
-    passw_var.set("")
 
-def open_page(pagename):
     driver = webdriver.Chrome()
-    driver.get(pagename)
-    page = urllib.request.urlopen(pagename)
+    driver.get(wp)
+
+"""
+    #get page content
+    page = urllib.request.urlopen(webpage)
     print(page.read())
+"""
+
 
 # creating a label for
 # name using widget Label
-name_label = tk.Label(root, text='Username', font=('calibre', 10, 'bold'))
+name_label = tk.Label(root, text='Webpage link', font=('calibre', 10, 'bold'))
 
 # creating a entry for input
 # name using widget Entry
 name_entry = tk.Entry(root, textvariable=name_var, font=('calibre', 10, 'normal'))
 
-# creating a label for password
-passw_label = tk.Label(root, text='Password', font=('calibre', 10, 'bold'))
-
-# creating a entry for password
-passw_entry = tk.Entry(root, textvariable=passw_var, font=('calibre', 10, 'normal'), show='*')
-
-# creating a button using the widget
-# Button that will call the submit function
-sub_btn = tk.Button(root, text='Submit', command=submit)
-
 #button for webpage opening
-wp_btn = tk.Button(root, text='Open web page : "http://www.python.org"',command=lambda: open_page('http://www.python.org'))
+wp_btn = tk.Button(root, text='Open web page',command=lambda: open_page())
 
+info_label = tk.Label(root, text = "By default the webage is set to : " + webpage)
+#Input_textfield = tk.Text(root, height = 5, width = 52)
 
 # placing the label and entry in
 # the required position using grid
 # method
 name_label.grid(row=0, column=0)
 name_entry.grid(row=0, column=1)
-passw_label.grid(row=1, column=0)
-passw_entry.grid(row=1, column=1)
-sub_btn.grid(row=2, column=1)
 wp_btn.grid(row=3,column=1)
+info_label.grid(row=4,column=0)
+#Input_textfield.grid(row=4, column=1)
 
 # performing an infinite loop
 # for the window to display
